@@ -2,17 +2,21 @@ import chess, random
 from chess_ai import *
 
 # board1 = chess.Board()
-# board1.push_san("e4")
-# board1.remove_piece_at(0)
-# legal_moves = list(board1.legal_moves)
+# print(board1.turn) 
+# # True is white's turn
+# # False is black's turn
+# board1.push_san("f3")
+# board1.push_san("e5")
+# board1.push_san("g4")
+# board1.push_san("Qh4#")
+# #board1.remove_piece_at(0)
+# #legal_moves = list(board1.legal_moves)
 
 # print(board1.unicode())
-# print(legal_moves)
 
-# board1.push(legal_moves[0])
-# print(board1.unicode())
-
-# print(board1.is_checkmate)
+# if board1.is_checkmate():
+#     print("checkmate")
+# print(board1.turn)
 
 
 # Reset the board and game.

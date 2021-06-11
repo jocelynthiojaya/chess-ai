@@ -1,10 +1,5 @@
 import chess
 
-# board1 = chess.Board()
-# board1.push_san("e4")
-# board1.remove_piece_at(0)
-# print(board1.unicode())
-
 def getScoreOfBoard(board):
     score_white = 0
     score_black = 0
@@ -80,14 +75,9 @@ def getEvaluationBoard(board):
                 if piece_color is True:
                     score_white += king_points[-square]
                 elif piece_color is False:
-                   score_black += king_points[square]
-                
-                   
-                
+                   score_black += king_points[square]     
                 
     return {'white':score_white, 'black':score_black}
-    
-
 
 def getValidMoves(board):
     return list(board.legal_moves)
@@ -112,7 +102,7 @@ def getMoveMinimax(board, color):
     return bestMove
 
 def minimax(board, depth, isMaximizing, alpha, beta, color):
-    if board.is_checkmate() == True or depth == 0:
+    if winCondition(board, color) == True or depth == 0:
         score = getEvaluationBoard(board)[color]
         return score
     
@@ -135,3 +125,11 @@ def minimax(board, depth, isMaximizing, alpha, beta, color):
             if beta <= alpha:
                 break
         return minVal
+
+def winCondition(board, color):
+    if color == 'white':
+        if board.is_checkmate() == True and board.turn == False:
+            return True
+    elif color == 'black':
+        if board.is_checkmate() == True and board.turn == True:
+            return True
