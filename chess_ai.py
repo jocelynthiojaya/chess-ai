@@ -25,9 +25,9 @@ def getScoreOfBoard(board):
             #if there is no piece in the square
             else: 
                 piece = 0 
-    return {'white':score_white, 'black':score_black}
+    return {'white':score_white-score_black, 'black':score_black-score_white}
 
-def getEvaluationBoard(board):
+def getEvaluationBoard(board, color):
     score_white = 0
     score_black = 0
     pawn_points = [0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,1,1,2,3,3,2,1,1,0.5,0.5,1,2.5,2.5,1,0.5,0.5,0,0,0,2,2,0,0,0,0,5,-0.5,-1,0,0,-1,-0.5,0.5,0.5,1,1,-2,-2,1,1,0.5,0,0,0,0,0,0,0]
@@ -76,8 +76,18 @@ def getEvaluationBoard(board):
                     score_white += king_points[-square]
                 elif piece_color is False:
                    score_black += king_points[square]     
-                
-    return {'white':score_white, 'black':score_black}
+
+    piece_white = getScoreOfBoard(board)['white']
+    piece_black = getScoreOfBoard(board)['black']
+
+    if color == 'white':
+        if board.is_checkmate() == True and board.turn == False:
+            score_white += 100
+    elif color == 'black':
+        if board.is_checkmate() == True and board.turn == True:
+            score_black += 100
+
+    return {'white':score_white+piece_white, 'black':score_black+piece_black}
 
 def getValidMoves(board):
     return list(board.legal_moves)
@@ -103,7 +113,7 @@ def getMoveMinimax(board, color):
 
 def minimax(board, depth, isMaximizing, alpha, beta, color):
     if winCondition(board, color) == True or depth == 0:
-        score = getEvaluationBoard(board)[color]
+        score = getEvaluationBoard(board, color)[color]
         return score
     
     if isMaximizing:
