@@ -16,11 +16,11 @@ def getScoreOfBoard(board):
            
             #True means the color is white 
             if piece_color is True:
-              score_white = score_white + piece
+              score_white = score_white + (piece * 10)
             
             #False means the color is black
             elif piece_color is False:
-                score_black = score_black + piece
+                score_black = score_black + (piece * 10)
             
             #if there is no piece in the square
             else: 
@@ -143,3 +143,11 @@ def winCondition(board, color):
     elif color == 'black':
         if board.is_checkmate() == True and board.turn == True:
             return True
+
+
+
+
+
+
+
+
