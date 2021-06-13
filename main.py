@@ -18,6 +18,11 @@ from chess_ai import *
 #     print("checkmate")
 # print(board1.turn)
 
+def getBestMove(fen):
+    board = chess.Board(fen)
+    color = fen.split()[1]
+    return getMoveMinimax(board, color)
+
 
 # Reset the board and game.
 mainBoard = chess.Board()
