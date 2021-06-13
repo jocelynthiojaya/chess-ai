@@ -13,6 +13,8 @@ def getScoreOfBoard(board):
             
            #to get the type of piece
             piece = board.piece_type_at(square)
+
+            #pawn = 10 ; knight = 20 ; bishop = 30 ; rook = 40 ; queen = 50; king = 60 
            
             #True means the color is white 
             if piece_color is True:
