@@ -23,7 +23,6 @@ def getBestMove(fen):
     color = fen.split()[1]
     return getMoveMinimax(board, color)
 
-
 # Reset the board and game.
 mainBoard = chess.Board()
 mainBoard.reset_board()

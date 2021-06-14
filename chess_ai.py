@@ -102,9 +102,9 @@ def getMoveMinimax(board, color):
     bestScore = -10000
     bestMove = []
     for move in possibleMoves:
-        dupeBoard = chess.Board(board.fen())
-        dupeBoard.push(move)
-        score = minimax(dupeBoard, 4, True, -10000, 10000, color)
+        board.push(move)
+        score = minimax(board, 4, True, -10000, 10000, color)
+        board.pop()
         if score > bestScore:
             bestMove = move
             bestScore = score
