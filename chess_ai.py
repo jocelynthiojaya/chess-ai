@@ -19,11 +19,11 @@ def getScoreOfBoard(board):
            
             #True means the color is white 
             if piece_color is True:
-              score_white = score_white + (piece * 5)
+              score_white = score_white + (piece)
             
             #False means the color is black
             elif piece_color is False:
-                score_black = score_black + (piece * 5)
+                score_black = score_black + (piece)
             
             #if there is no piece in the square
             else: 
@@ -82,6 +82,8 @@ def getEvaluationBoard(board, color):
 
     piece_white = getScoreOfBoard(board)['white']
     piece_black = getScoreOfBoard(board)['black']
+    print("piece white: ", piece_white)
+    print("piece black: ", piece_black)
 
     if color == 'white':
         if board.is_checkmate() == True and board.turn == False:
@@ -89,6 +91,9 @@ def getEvaluationBoard(board, color):
     elif color == 'black':
         if board.is_checkmate() == True and board.turn == True:
             score_black += 100
+
+    print("score white: ", score_white)
+    print("score black: ", score_black)
 
     return {'white':score_white+piece_white, 'black':score_black+piece_black}
 
@@ -125,6 +130,7 @@ def minimax(board, depth, isMaximizing, alpha, beta, color):
             val = minimax(board, depth-1, False, alpha, beta, color)
             board.pop()
             maxVal = max(maxVal, val)
+            #print("maxVal: ", maxVal)
             alpha = max(alpha, val)
             if beta <= alpha:
                 break
@@ -137,6 +143,7 @@ def minimax(board, depth, isMaximizing, alpha, beta, color):
             val = minimax(board, depth-1, True, alpha, beta, color)
             board.pop()
             minVal = min(minVal, val)
+            #print("minVal: ", minVal)
             beta = min(beta, val)
             if beta <= alpha:
                 break
