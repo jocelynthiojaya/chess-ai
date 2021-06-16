@@ -22,7 +22,8 @@ def get_app():
         elif(color == "b"):
             color = "black"
         response = jsonify({'move' : getMoveMinimaxStr(fen, color)})
-        response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
+        print(response)
+        # response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
         return jsonify(response)
 
     @app.route('/engine', methods=['POST'])
