@@ -19,16 +19,16 @@ def getScoreOfBoard(board):
            
             #True means the color is white 
             if piece_color is True:
-              score_white = score_white + (piece * 10)
+              score_white = score_white + (piece) #* 5)
             
             #False means the color is black
             elif piece_color is False:
-                score_black = score_black + (piece * 10)
+                score_black = score_black + (piece) # * 5)
             
             #if there is no piece in the square
             else: 
                 piece = 0 
-    return {'white':score_white-score_black, 'black':score_black-score_white}
+    return {'white':score_white, 'black':score_black}
 
 def getEvaluationBoard(board, color):
     score_white = 0
