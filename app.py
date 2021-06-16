@@ -29,6 +29,9 @@ def get_app():
     def engine():
         req = request.get_json()
         res = {'move' : str(get_engine_move(req["fen"]))}
-        return jsonify(res)
+        response = jsonify(res)
+        response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
+        
+        return res
 
     return app
