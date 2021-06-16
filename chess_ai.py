@@ -1,5 +1,5 @@
 import chess
-from functools import cache
+#from functools import cache
 
 def getScoreOfBoard(board):
     score_white = 0
@@ -104,7 +104,7 @@ def getMoveMinimax(board, color):
     bestMove = []
     for move in possibleMoves:
         board.push(move)
-        score = minimax(board, 4, True, -10000, 10000, color)
+        score = minimax(board, 3, True, -10000, 10000, color)
         board.pop()
         if score > bestScore:
             bestMove = move
@@ -121,7 +121,9 @@ def minimax(board, depth, isMaximizing, alpha, beta, color):
     if isMaximizing:
         maxVal = -10000
         for child in getValidMoves(board):
+            board.push(child)
             val = minimax(board, depth-1, False, alpha, beta, color)
+            board.pop()
             maxVal = max(maxVal, val)
             alpha = max(alpha, val)
             if beta <= alpha:
@@ -131,7 +133,9 @@ def minimax(board, depth, isMaximizing, alpha, beta, color):
     else: 
         minVal = 10000
         for child in getValidMoves(board):
+            board.push(child)
             val = minimax(board, depth-1, True, alpha, beta, color)
+            board.pop()
             minVal = min(minVal, val)
             beta = min(beta, val)
             if beta <= alpha:
@@ -146,7 +150,7 @@ def winCondition(board, color):
         if board.is_checkmate() == True and board.turn == True:
             return True
 
-@cache
+#@cache
 def getMoveMinimaxStr(fen, color):
     # Given a board and the winner color, determine where to
     # move and return that move.
