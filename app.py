@@ -9,8 +9,8 @@ import json
 
 def get_app():
     app = Flask(__name__)
-    cors = CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
+    cors = CORS(app)
 
     @app.route('/naive', methods=['POST'])
     def naive():
@@ -21,8 +21,8 @@ def get_app():
             color = "white"
         elif(color == "b"):
             color = "black"
-        response = {}
-        response['move'] = getMoveMinimaxStr(fen, color)
+        response = jsonify({'move' : getMoveMinimaxStr(fen, color)})
+        response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
         return jsonify(response)
 
     @app.route('/engine', methods=['POST'])
