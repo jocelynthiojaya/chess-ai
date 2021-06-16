@@ -9,8 +9,8 @@ import json
 
 def get_app():
     app = Flask(__name__)
-    app.config['CORS_HEADERS'] = 'Content-Type'
-    cors = CORS(app)
+    # app.config['CORS_HEADERS'] = 'Content-Type'
+    CORS(app)
 
     @app.route('/naive', methods=['POST'])
     def naive():
@@ -30,7 +30,7 @@ def get_app():
         req = request.get_json()
         res = {'move' : str(get_engine_move(req["fen"]))}
         response = jsonify(res)
-        response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
+        # response.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com/')
         
         return res
 
