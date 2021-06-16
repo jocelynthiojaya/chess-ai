@@ -27,4 +27,5 @@ def naive():
 @app.route('/engine', methods=['POST'])
 def engine():
     req = request.get_json()
-    return get_engine_move(req["fen"])
+    res = {'move' : str(get_engine_move(req["fen"]))}
+    return jsonify(res)

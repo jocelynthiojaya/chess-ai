@@ -103,21 +103,12 @@ def get_engine_move(fen):
     engine = chess.engine.SimpleEngine.popen_uci('stockfish_13_win_x64')
     result = engine.play(board, chess.engine.Limit(time=5, depth=15))
     engine.quit()
+    print(result.move)
     return result.move
 
 def engine_evaluation(board):
     print(board.fen())
+    engine = chess.engine.SimpleEngine.popen_uci('stockfish_13_win_x64')
     result = engine.analyse(board, chess.engine.Limit(time=0.01, depth=10))
 
     return result['score'].relative.score(mate_score=100)
-
-# engine = chess.engine.SimpleEngine.popen_uci('stockfish_13_win_x64')
-# evaluate = engine_evaluation
-
-# test = chess.Board()
-# print(test.fen())
-# algo = alphabeta(test, 4)
-# print(algo)
-# test.push(algo[1])
-# print(test.unicode())
-# print(engine_evaluation(chess.Board()))
