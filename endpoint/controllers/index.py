@@ -11,7 +11,6 @@ def naive():
 
 @bp.route('/engine', methods = ['GET','POST'])
 def engine():
-    req = request.get_json()
-    res = {'move' : str(get_engine_move(req["fen"]))}
-    
+    # req = request.get_json()
+    res = {'move' : str(get_engine_move("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"))}
     return res
