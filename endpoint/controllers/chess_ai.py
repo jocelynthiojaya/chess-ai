@@ -168,7 +168,7 @@ def getMoveMinimaxStr(fen, color):
     bestMove = []
     for move in possibleMoves:
         board.push(move)
-        score = minimax(board, 4, True, -10000, 10000, color)
+        score = minimax(board, 3, True, -10000, 10000, color)
         board.pop()
         if score > bestScore:
             bestMove = move
