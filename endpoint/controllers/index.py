@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for, request
+from flask import Blueprint, render_template, session, redirect, url_for, request, jsonify
 from endpoint.controllers.engine import get_engine_move
 from endpoint.controllers.chess_ai import getMoveMinimaxStr
 bp = Blueprint("index", __name__, url_prefix="/")
@@ -12,7 +12,8 @@ def naive():
         color = "white"
     elif(color == "b"):
         color = "black"
-    res = {'move' : str(getMoveMinimaxStr(fen, color))}
+    res = jsonify({'move' : str(getMoveMinimaxStr(fen, color))})
+    res.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com')
     return res
 
 @bp.route('/engine', methods = ['GET','POST'])
