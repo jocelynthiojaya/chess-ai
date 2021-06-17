@@ -1,5 +1,6 @@
 # Is an endpoint, no need to care about this
 from flask import Flask, jsonify
+from flask.templating import render_template, render_template_string
 from flask_cors import CORS, cross_origin
 from flask.globals import request
 from chess_ai import getMoveMinimaxStr
@@ -41,10 +42,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # def test():
 #     return "it does somewhat work"
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
-    return "it does somewhat work"
-
+    return render_template('index.html')
 @app.errorhandler(404)
-def notfound():
+def notfound(e):
     return "404"
