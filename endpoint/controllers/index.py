@@ -3,7 +3,7 @@ from endpoint.controllers.engine import get_engine_move
 from endpoint.controllers.chess_ai import getMoveMinimaxStr
 bp = Blueprint("index", __name__, url_prefix="/")
 
-@bp.route('/naive', methods = ['GET','POST'])
+@bp.route('/naive', methods = ['GET','POST','OPTIONS'])
 def naive():
     req = request.get_json()
     fen = req["fen"]
@@ -16,7 +16,7 @@ def naive():
     res.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com')
     return res
 
-@bp.route('/engine', methods = ['GET','POST'])
+@bp.route('/engine', methods = ['GET','POST','OPTIONS'])
 def engine():
     req = request.get_json()
     fen = req["fen"]
