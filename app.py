@@ -35,6 +35,13 @@ def get_app():
         
         return response
 
+    @app.route('/testmove', methods=['GET','POST'])
+    def testmove():
+        return jsonify({'move' : "d2d4"})
+    @app.route('/test', methods=['GET'])
+    def test():
+        return "it does somewhat work"
+
     return app
 
 application = get_app()
