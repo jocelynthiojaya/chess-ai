@@ -6,14 +6,6 @@ bp = Blueprint("index", __name__, url_prefix="/")
 
 cors = CORS(bp, resources={r"/*" : {'origins' : "https://chess-webapp.com"}})
 
-@bp.route('/engine', methods = ['GET','POST','OPTIONS'])
-@cross_origin(origin='https://chess-webapp.com', headers=['Content-Type'])
-def engine():
-    req = request.get_json()
-    fen = req["fen"]
-    res = jsonify({'move' : str(get_engine_move(fen))})
-    return res
-
 @bp.route('/naive', methods = ['GET','POST','OPTIONS'])
 @cross_origin(origin='https://chess-webapp.com', headers=['Content-Type'])
 def naive():
@@ -25,4 +17,12 @@ def naive():
     elif(color == "b"):
         color = "black"
     res = jsonify({'move' : str(getMoveMinimaxStr(fen, color))})
+    return res
+
+@bp.route('/engine', methods = ['GET','POST','OPTIONS'])
+@cross_origin(origin='https://chess-webapp.com', headers=['Content-Type'])
+def engine():
+    req = request.get_json()
+    fen = req["fen"]
+    res = jsonify({'move' : str(get_engine_move(fen))})
     return res
