@@ -82,8 +82,8 @@ def getEvaluationBoard(board, color):
 
     piece_white = getScoreOfBoard(board)['white']
     piece_black = getScoreOfBoard(board)['black']
-    print("piece white: ", piece_white)
-    print("piece black: ", piece_black)
+    # print("piece white: ", piece_white)
+    # print("piece black: ", piece_black)
 
     if color == 'white':
         if board.is_checkmate() == True and board.turn == False:
@@ -92,8 +92,8 @@ def getEvaluationBoard(board, color):
         if board.is_checkmate() == True and board.turn == True:
             score_black += 100
 
-    print("score white: ", score_white)
-    print("score black: ", score_black)
+    # print("score white: ", score_white)
+    # print("score black: ", score_black)
 
     return {'white':score_white+piece_white, 'black':score_black+piece_black}
 
