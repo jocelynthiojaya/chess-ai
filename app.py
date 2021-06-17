@@ -40,4 +40,6 @@ def testmove():
 @app.route('/test', methods=['GET'])
 def test():
     return "it does somewhat work"
-
+@app.route('/', methods=['GET'])
+def base():
+    return "it does somewhat work"
