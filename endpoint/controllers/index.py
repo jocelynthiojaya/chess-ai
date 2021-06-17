@@ -20,7 +20,7 @@ def naive():
     return res
 
 @bp.route('/engine', methods = ['GET','POST','OPTIONS'])
-@cross_origin()
+@cross_origin(origin='https://chess-webapp.com', headers=['Content-Type'])
 def engine():
     req = request.get_json()
     fen = req["fen"]
