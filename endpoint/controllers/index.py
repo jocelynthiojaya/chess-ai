@@ -4,8 +4,10 @@ from endpoint.controllers.engine import get_engine_move
 from endpoint.controllers.chess_ai import getMoveMinimaxStr
 bp = Blueprint("index", __name__, url_prefix="/")
 
+cors = CORS(bp, resources={r"/*" : {'origins' : "https://chess-webapp.com"}})
+
 @bp.route('/naive', methods = ['GET','POST','OPTIONS'])
-@cross_origin()
+@cross_origin(origin='https://chess-webapp.com', headers=['Content-Type'])
 def naive():
     req = request.get_json()
     fen = req["fen"]
@@ -15,7 +17,6 @@ def naive():
     elif(color == "b"):
         color = "black"
     res = jsonify({'move' : str(getMoveMinimaxStr(fen, color))})
-    res.headers.add('Access-Control-Allow-Origin', 'https://chess-webapp.com')
     return res
 
 @bp.route('/engine', methods = ['GET','POST','OPTIONS'])
