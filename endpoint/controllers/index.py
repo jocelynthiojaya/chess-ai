@@ -24,5 +24,5 @@ def naive():
 def engine():
     req = request.get_json()
     fen = req["fen"]
-    res = {'move' : str(get_engine_move(fen))}
+    res = jsonify({'move' : str(get_engine_move(fen))})
     return res
