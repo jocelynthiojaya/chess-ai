@@ -41,10 +41,3 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # @app.route('/test', methods=['GET'])
 # def test():
 #     return "it does somewhat work"
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-@app.errorhandler(404)
-def notfound(e):
-    return "404"
