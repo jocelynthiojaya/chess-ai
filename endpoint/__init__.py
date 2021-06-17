@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from flask_cors import CORS
 from endpoint import controllers
 from endpoint.controllers import index
 
@@ -18,7 +17,6 @@ def create_app():
         pass
 
     controllers.register_all_blueprints(app)
-    CORS(app)
     return app
 
 app = create_app()

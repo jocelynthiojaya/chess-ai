@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, jsonify
+from flask_cors import CORS, cross_origin
 from endpoint.controllers.engine import get_engine_move
 from endpoint.controllers.chess_ai import getMoveMinimaxStr
 bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.route('/naive', methods = ['GET','POST','OPTIONS'])
+@cross_origin()
 def naive():
     req = request.get_json()
     fen = req["fen"]
@@ -17,6 +19,7 @@ def naive():
     return res
 
 @bp.route('/engine', methods = ['GET','POST','OPTIONS'])
+@cross_origin()
 def engine():
     req = request.get_json()
     fen = req["fen"]
