@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from engine import get_engine_move
-from chess_ai import getMoveMinimaxStr
+from endpoint.controllers.engine import get_engine_move
+from endpoint.controllers.chess_ai import getMoveMinimaxStr
 bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.route('/naive', methods = ['GET','POST'])
