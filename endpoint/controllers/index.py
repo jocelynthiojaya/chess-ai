@@ -5,8 +5,8 @@ bp = Blueprint("index", __name__, url_prefix="/")
 
 @bp.route('/naive', methods = ['GET','POST'])
 def naive():
-    # req = request.get_json()
-    fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    req = request.get_json()
+    fen = req["fen"]
     color = fen.split(" ")[1]
     if(color == "w"):
         color = "white"
@@ -17,6 +17,7 @@ def naive():
 
 @bp.route('/engine', methods = ['GET','POST'])
 def engine():
-    # req = request.get_json()
-    res = {'move' : str(get_engine_move("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"))}
+    req = request.get_json()
+    fen = req["fen"]
+    res = {'move' : str(get_engine_move(fen))}
     return res
