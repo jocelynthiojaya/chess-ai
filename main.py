@@ -1,23 +1,6 @@
 import chess, random
 from chess_ai import *
 
-# board1 = chess.Board()
-# print(board1.turn) 
-# # True is white's turn
-# # False is black's turn
-# board1.push_san("f3")
-# board1.push_san("e5")
-# board1.push_san("g4")
-# board1.push_san("Qh4#")
-# #board1.remove_piece_at(0)
-# #legal_moves = list(board1.legal_moves)
-
-# print(board1.unicode())
-
-# if board1.is_checkmate():
-#     print("checkmate")
-# print(board1.turn)
-
 def getBestMove(fen):
     board = chess.Board(fen)
     color = fen.split()[1]
